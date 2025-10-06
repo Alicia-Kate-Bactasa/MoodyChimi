@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moody Chimi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Moody Chimi!</h1>
+        </header>
+        
+        <div class="main-content">
+            <div class="left-section">
+                <div class="name-input-section">
+                    <label>Enter your name:</label>
+                    <input type="text" id="nameInput" placeholder="Your name here...">
+                </div>
+                
+                <div class="quote-section">
+                    <div class="quote-label">Hi <span id="displayName">[name]</span>, here's a random quote for you:</div>
+                    <div class="quote-display" id="quoteDisplay">
+                        Click "Generate a New One" to get your first quote!
+                    </div>
+                    <button class="generate-new-btn" id="generateNewBtn">
+                        Generate a New One
+                    </button>
+                </div>
+                
+                <div class="mood-section">
+                    <div class="mood-label">Change Chimi's mood:</div>
+                    <div class="mood-buttons">
+                        <button class="mood-btn" data-mood="happy">
+                            <span class="emoji">😊</span>
+                            <span class="mood-text">Happy</span>
+                        </button>
+                        <button class="mood-btn" data-mood="sad">
+                            <span class="emoji">😔</span>
+                            <span class="mood-text">sad</span>
+                        </button>
+                        <button class="mood-btn" data-mood="angry">
+                            <span class="emoji">😠</span>
+                            <span class="mood-text">angry</span>
+                        </button>
+                        <button class="mood-btn" data-mood="in-between">
+                            <span class="emoji">😡</span>
+                            <span class="mood-text">in-between</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <div class="circle-design">
+                    <div class="circle-inner">
+                        <img id="moodImage" src="../media/happy.png" alt="Mood Character" class="mood-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
