@@ -15,8 +15,11 @@
         <div class="main-content">
             <div class="left-section">
                 <div class="name-input-section">
-                    <label>Enter your name:</label>
-                    <input type="text" id="nameInput" placeholder="Your name here...">
+                    <label>Enter your name and look to the right!</label>
+                    <div class="input-container">
+                        <input type="text" id="nameInput" placeholder="Your name here...">
+                        <button id="submitNameBtn" class="submit-name-btn">Submit</button>
+                    </div>
                 </div>
                 
                 <div class="quote-section">
@@ -53,9 +56,14 @@
             </div>
             
             <div class="right-section">
+                <div class="greeting-section" id="greetingSection" style="display: none;">
+                    <div class="greeting-message" id="greetingMessage">
+                        Hello [name], good luck in life!
+                    </div>
+                </div>
                 <div class="circle-design">
                     <div class="circle-inner">
-                        <img id="moodImage" src="../media/happy.png" alt="Mood Character" class="mood-image">
+                        <img id="moodImage" src="/media/happy.png" alt="Mood Character" class="mood-image">
                     </div>
                 </div>
             </div>

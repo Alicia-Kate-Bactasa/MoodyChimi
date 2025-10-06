@@ -52,45 +52,102 @@ const quotes = {
 
 
 const nameInput = document.getElementById('nameInput');
+const submitNameBtn = document.getElementById('submitNameBtn');
 const displayName = document.getElementById('displayName');
+const greetingSection = document.getElementById('greetingSection');
+const greetingMessage = document.getElementById('greetingMessage');
 const quoteDisplay = document.getElementById('quoteDisplay');
 const moodButtons = document.querySelectorAll('.mood-btn');
 const generateNewBtn = document.getElementById('generateNewBtn');
 const moodImage = document.getElementById('moodImage');
 
-
+let savedName = '';
 let usedQuotes = [];
 let isTyping = false;
 
-nameInput.addEventListener('input', function() {
-    const name = nameInput.value.trim();
-    displayName.textContent = name || '[name]';
-});
 
-
-moodButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const mood = this.getAttribute('data-mood');
-        
-        moodButtons.forEach(btn => btn.classList.remove('active'));
-        
-        
-        this.classList.add('active');
-        
-        
-        updateButtonStyling(mood);
-        
-      
-        changeMoodImage(mood);
+document.addEventListener('DOMContentLoaded', function() {
+    
+    nameInput.addEventListener('input', function() {
+        const name = nameInput.value.trim();
+        displayName.textContent = name || '[name]';
     });
-});
 
+  
+    submitNameBtn.addEventListener('click', function() {
+        console.log('Submit button clicked!'); 
+        const name = nameInput.value.trim();
+        console.log('Name entered:', name); 
+        if (name) {
+            savedName = name;
+            displayName.textContent = name;
+            showGreeting(name);
+       
+            nameInput.value = '';
+        } else {
+            console.log('No name entered');
+        }
+    });
 
-generateNewBtn.addEventListener('click', function() {
-    if (!isTyping) {
-        generateNewQuote();
+    
+    function showGreeting(name) {
+        console.log('Showing greeting for:', name); 
+        greetingMessage.textContent = `Hello ${name}, good luck in life!`;
+        greetingSection.style.display = 'block';
+       
+        setTimeout(() => {
+            greetingSection.classList.add('show');
+        }, 10);
     }
+
+    
+    nameInput.focus();
+
+   
+    moodButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const mood = this.getAttribute('data-mood');
+            
+            moodButtons.forEach(btn => btn.classList.remove('active'));
+            
+            this.classList.add('active');
+            
+            updateButtonStyling(mood);
+            
+            changeMoodImage(mood);
+        });
+    });
+
+   
+    generateNewBtn.addEventListener('click', function() {
+        if (!isTyping) {
+            generateNewQuote();
+        }
+    });
+
+   
+    nameInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+         
+            const name = nameInput.value.trim();
+            if (name) {
+                savedName = name;
+                displayName.textContent = name;
+                showGreeting(name);
+                nameInput.value = '';
+            } else if (!isTyping && savedName) {
+              
+                generateNewQuote();
+            }
+        }
+    });
+
+    
+    setTimeout(() => {
+        quoteDisplay.style.opacity = '1';
+    }, 500);
 });
+
 
 function generateNewQuote() {
     
@@ -158,42 +215,22 @@ function updateButtonStyling(mood) {
     });
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    nameInput.focus();
-    
- 
-    setTimeout(() => {
-        quoteDisplay.style.opacity = '1';
-    }, 500);
-});
-
-
-nameInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter' && !isTyping) {
-        
-        generateNewQuote();
-    }
-});
-
-
 function changeMoodImage(mood) {
-   
+
     moodImage.style.opacity = '0';
     
     setTimeout(() => {
-        const imagePath = `../media/${mood}.png`;
+        const imagePath = `/media/${mood}.png`;
         moodImage.src = imagePath;
         moodImage.alt = `${mood.charAt(0).toUpperCase() + mood.slice(1)} mood character`;
         
-  
+        
         moodImage.classList.remove('sad', 'happy', 'angry', 'in-between');
         
 
         moodImage.classList.add(mood);
         
- 
+
         moodImage.style.opacity = '1';
     }, 150); 
 }
