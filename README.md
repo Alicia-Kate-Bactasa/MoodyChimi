@@ -5,7 +5,7 @@
 It’s designed to make users smile, reflect, and have fun through expressive moods and positive quotes.
 
 **access it here:** https://linux-22104079.dcism.org/ 
-created as a node.js project for my linux course
+---> created as a node.js project for my linux course
 
 ---
 ## Preview
