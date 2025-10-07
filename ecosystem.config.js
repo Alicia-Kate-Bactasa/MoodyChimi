@@ -10,7 +10,7 @@ module.exports = {
     },
     env_production: {
       NODE_ENV: 'production',
-      PORT: 20017
+      PORT: process.env.PORT || 20017
     },
     log_file: './logs/combined.log',
     out_file: './logs/out.log',
